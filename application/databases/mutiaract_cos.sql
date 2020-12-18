@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 15, 2020 at 06:49 AM
--- Server version: 5.7.24
--- PHP Version: 7.4.12
+-- Generation Time: Dec 17, 2020 at 03:11 AM
+-- Server version: 10.3.27-MariaDB
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -37,14 +38,6 @@ CREATE TABLE `barang` (
   `HARGA_BELI_BARANG` int(11) DEFAULT NULL,
   `HARGA_JUAL_BARANG` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `barang`
---
-
-INSERT INTO `barang` (`ID_BARANG`, `ID_PENGGUNA`, `ID_SUPPLIER`, `ID_SATUAN`, `NAMA_BARANG`, `STOK_BARANG`, `HARGA_BELI_BARANG`, `HARGA_JUAL_BARANG`) VALUES
-(1, 4, 1, 5, 'Sabun Cair 250 mL', 690, 14000, 24000),
-(2, 4, 4, 5, 'Shampo 250 mL', 70, 15000, 17000);
 
 -- --------------------------------------------------------
 
@@ -151,9 +144,9 @@ CREATE TABLE `keys` (
   `user_id` int(11) NOT NULL,
   `key` varchar(40) NOT NULL,
   `level` int(2) NOT NULL,
-  `ignore_limits` tinyint(1) NOT NULL DEFAULT '0',
-  `is_private_key` tinyint(1) NOT NULL DEFAULT '0',
-  `ip_addresses` text,
+  `ignore_limits` tinyint(1) NOT NULL DEFAULT 0,
+  `is_private_key` tinyint(1) NOT NULL DEFAULT 0,
+  `ip_addresses` text DEFAULT NULL,
   `date_created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -320,9 +313,10 @@ INSERT INTO `pengguna` (`ID_PENGGUNA`, `ID_HAK_AKSES`, `NAMA_PENGGUNA`, `EMAIL_P
 (1, 1, 'Pijar Dwi Kusuma', 'pijardwi.pd@gmail.com', 'sqsa-01_(1)2.png', '$2y$10$6RudFOyMuHh/UR0vsu9c4Ofx7TFb1MlHSU9OfpOglldf2kvFnlD36', 1, '2020-10-05'),
 (3, 2, 'mohammad zaidan salim', 'supervisor@gmail.com', 'zaid.jpg', '$2y$10$hE7CiKLW/X8cr66yvD5zuOPlXvsHgCyC9PlGngZj5cSE5S/e/fJNS', 1, '2020-10-05'),
 (4, 3, 'Gudang MCT', 'gudang@gmail.com', '043552900_1572858828-71890045_694906974353654_3305990052531100815_n.jpg', '$2y$10$dT/Yf9OD3Lg1eI2AshUOhu0OmU6K2bJiwuRgbBIIsI5s5oJ4sUbZe', 1, '2020-10-05'),
-(5, 4, 'Dewi', 'sales@gmail.com', '1.jpg', '$2y$10$diphPs7mycMu5LQnJiHkHOo/QeHdfwLHRaStg5FEe46eIbievqTPG', 1, '2020-10-05'),
+(5, 4, 'Dewi', 'sales@gmail.com', '1.jpg', '$2y$10$NevsXUioV59InL.j5xxVduewl7rSlNVRudB5Ccni1yxB6Mhfw8ajy', 1, '2020-10-05'),
 (7, 4, 'Dian', 'sales2@gmail.com', '49966-artis-tik-tok-nadira-zerlinda-suaracomismail.jpg', '$2y$10$NevsXUioV59InL.j5xxVduewl7rSlNVRudB5Ccni1yxB6Mhfw8ajy', 1, '2020-10-23'),
-(8, 4, 'masrizal', 'masrizal04@gmail.com', 'guin.jpg', '$2y$10$Xwn5Cj1uEO7VdtC/dtjERujrzFB7SsdzU6Y9sX3nWxGdbUGHK3KSe', 1, '2020-12-07');
+(9, 4, 'MASRIZAL EKA YULIANTO', 'masrizal04@gmail.com', 'default.jpg', '$2y$10$NBGFaLn5WbT/FXXKr7l57OuedYHVXpW1FY0179V46svFE3MllXeUu', 1, '2020-12-16'),
+(10, 4, 'pijar dwi kusima', 'pijar@gmail.com', 'default.jpg', '$2y$10$UVGU9i0hSb/df1OhGHTuNuxzJwz6FYxDh/DVi4RcsYckJ3iNpbksW', 1, '2020-12-16');
 
 -- --------------------------------------------------------
 
@@ -491,7 +485,7 @@ CREATE TABLE `surat_jalan` (
   `ID_SURAT_JALAN` int(11) NOT NULL,
   `ID_PENGGUNA` int(11) DEFAULT NULL,
   `NO_SURAT_JALAN` varchar(50) NOT NULL,
-  `STATUS_SURAT_JALAN` int(1) NOT NULL DEFAULT '0',
+  `STATUS_SURAT_JALAN` int(1) NOT NULL DEFAULT 0,
   `TGL_SURAT_JALAN` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -705,7 +699,7 @@ ALTER TABLE `pengembalian`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `ID_PENGGUNA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_PENGGUNA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `penjualan`
