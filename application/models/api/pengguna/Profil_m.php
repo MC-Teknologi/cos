@@ -6,9 +6,11 @@ class Profil_m extends CI_Model
     public function ProfilSaya($id = null)
     {
         $this->db->select('
+            ID_PENGGUNA,
             NAMA_PENGGUNA,
             EMAIL_PENGGUNA,
-            FOTO_PENGGUNA
+            FOTO_PENGGUNA,
+            ID_HAK_AKSES
         ');
         $this->db->from('pengguna');
         if ($id != null) {

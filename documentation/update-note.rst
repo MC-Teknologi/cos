@@ -3,6 +3,11 @@ UPDATE NOTE
 *******************
 
 *******************
+Version 1.0.3 (Beta) 21 Desember 2020
+*******************
+* Fix feature pengguna di cos mobile
+
+*******************
 Version 1.0.2 (Beta) 18 Desember 2020
 *******************
 * API untuk profil saya, ubah password, dan ubah profil sudah dibuat
