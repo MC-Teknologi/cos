@@ -3,6 +3,11 @@ UPDATE NOTE
 *******************
 
 *******************
+Version 1.0.4 (Beta) 22 Desember 2020
+*******************
+* Api fitur daftar pelanggan sudah siap digunakan
+
+*******************
 Version 1.0.3 (Beta) 21 Desember 2020
 *******************
 * Fix feature pengguna di cos mobile
