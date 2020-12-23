@@ -19,7 +19,7 @@ class Daftar_pelanggan extends CI_Controller
             $respon = [
                 'status' => true,
                 'message' => "Data berhasil didapatkan",
-                'data' => $this->daftar_pelanggan_m->TampilData($id_pengguna)->result()
+                'pelanggan' => $this->daftar_pelanggan_m->TampilData($id_pengguna)->result()
             ];
         }else {
             $respon = [
