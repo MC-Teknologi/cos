@@ -9,6 +9,7 @@ class Daftar_pelanggan_m extends CI_Model
         if ($id_pengguna != null) {
             $this->db->where('ID_PENGGUNA ', $id_pengguna);
         }
+        $this->db->order_by("ID_PELANGGAN", "DESC");
         $query = $this->db->get();
         return $query;
     }

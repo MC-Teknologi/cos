@@ -45,6 +45,11 @@ class Login extends CI_Controller
                     'message' => "Email dan password yang anda masukkan salah"
                 ];
             }
+        }else {
+            $respon = [
+                'status' => false,
+                'message' => "Email yang anda masukkan belum terdaftar"
+            ];
         }
 
         $json = json_encode($respon);

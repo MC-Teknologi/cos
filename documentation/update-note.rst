@@ -3,6 +3,12 @@ UPDATE NOTE
 *******************
 
 *******************
+Version 1.0.5 (Beta) 04 Januari 2021
+*******************
+* Menambahkan API untuk semua data surat jalan
+* Menyempurnakan API untuk login
+
+*******************
 Version 1.0.4 (Beta) 22 Desember 2020
 *******************
 * Api fitur daftar pelanggan sudah siap digunakan
