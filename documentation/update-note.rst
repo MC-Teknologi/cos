@@ -3,6 +3,12 @@ UPDATE NOTE
 *******************
 
 *******************
+Version 1.0.6 (Beta) 13 Januari 2021
+*******************
+* Menampilkan semua data pesan ulang
+* Menampilkan detail barang pada pesan ulang
+
+*******************
 Version 1.0.5 (Beta) 04 Januari 2021
 *******************
 * Menambahkan API untuk semua data surat jalan
