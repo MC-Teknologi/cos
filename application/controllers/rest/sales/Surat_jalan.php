@@ -58,6 +58,50 @@ class Surat_jalan extends CI_Controller
         $json = json_encode($respon);
         echo $json;
     }
+
+    public function input_penjualan()
+    {
+        $id_detail_surat_jalan = htmlspecialchars($this->input->post('id_detail_surat_jalan'), true);
+        $idpg = htmlspecialchars($this->input->post('id_pengguna'), true);
+        $id_pelanggan = htmlspecialchars($this->input->post('id_pelanggan'), true);
+        $tgl_penjualan = htmlspecialchars($this->input->post('tgl_penjualan'), true);
+        $jenis_pembayaran = htmlspecialchars($this->input->post('jenis_pembayaran'), true);
+        $jumlah_jual = htmlspecialchars($this->input->post('jumlah_jual'), true);
+        $jumlah_bawa = htmlspecialchars($this->input->post('jumlah_bawa'), true);
+        $api_key = htmlspecialchars($this->input->post('API-KEY'), true);
+
+        $cek_api_key = $this->api_m->CekApiKey($api_key);
+        if ($cek_api_key->num_rows() > 0) {
+
+            $data = [
+                'ID_DETAIL_SURAT_JALAN' => $id_detail_surat_jalan,
+                'ID_PENGGUNA' => $idpg,
+                'ID_PELANGGAN' => $id_pelanggan,
+                'TGL_PENJUALAN' => $tgl_penjualan,
+                'JUMLAH_PENJUALAN' => $jumlah_jual,
+                'STATUS_PEMBAYARAN_PENJUALAN' => $jenis_pembayaran
+            ];
+            $this->db->insert('penjualan', $data);
+
+            $jmlsisa = $jumlah_bawa - $jumlah_jual;
+            $this->db->where('ID_DETAIL_SURAT_JALAN', $id_detail_surat_jalan);
+            $this->db->update('detail_surat_jalan', ['JUMLAH_SISA' => $jmlsisa]);
+
+            $respon = [
+                'status' => true,
+                'message' => "Data berhasil diinputkan"
+            ];
+
+        } else {
+            $respon = [
+                'status' => false,
+                'message' => "Error API Key"
+            ];
+        }
+
+        $json = json_encode($respon);
+        echo $json;
+    }
 }
 
 /* End of file Surat_jala.php */
