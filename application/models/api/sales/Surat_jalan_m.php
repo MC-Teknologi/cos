@@ -29,6 +29,13 @@ class Surat_jalan_m extends CI_Model
                 "
         );
     }
+
+    public function noSJ()
+    {
+        $query = $this->db->query("SELECT MAX(NO_SURAT_JALAN) as nsj from surat_jalan");
+        $hasil = $query->row();
+        return $hasil->nsj;
+    }
 }
 
 /* End of file Surat_jalan_m.php */
