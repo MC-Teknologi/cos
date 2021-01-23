@@ -136,6 +136,10 @@ $route['supervisor/tolak_pesan_ulang/(:any)'] = 'supervisor/Verif_pesan_ulang_c/
 
 $route['laporan/penjualan'] = 'laporan/L_penjualan_c/index';
 
+$route['laporan/penjualang2'] = 'laporan/L_penjualan_c2/cetakg';
+
+$route['laporan/penjualan2'] = 'laporan/L_penjualan_c2/cetak';
+
 $route['laporan/penjualan_view'] = 'laporan/L_penjualan_c/view';
 
 $route['laporan/penjualan_cetak'] = 'laporan/L_penjualan_c/cetak';

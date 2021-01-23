@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 06, 2021 at 04:23 AM
--- Server version: 5.7.24
--- PHP Version: 7.4.12
+-- Generation Time: Jan 23, 2021 at 05:06 AM
+-- Server version: 10.3.27-MariaDB
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -43,9 +44,9 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`ID_BARANG`, `ID_PENGGUNA`, `ID_SUPPLIER`, `ID_SATUAN`, `NAMA_BARANG`, `STOK_BARANG`, `HARGA_BELI_BARANG`, `HARGA_JUAL_BARANG`) VALUES
-(1, 4, 1, 1, 'gantungan biru', 21, 500000, 510000),
-(2, 4, 1, 1, 'Sabun', 12, 1200, 12000),
-(3, 4, 1, 1, 'tags putih', 11, 1340, 2000);
+(1, 4, 1, 5, 'Baju', 99, 20000, 30000),
+(2, 4, 4, 5, 'Tas', 83, 30000, 45000),
+(3, 4, 1, 5, 'Sepatu', 99, 80000, 120000);
 
 -- --------------------------------------------------------
 
@@ -80,7 +81,14 @@ INSERT INTO `detail_pesan_ulang` (`ID_DETAIL_PESAN_ULANG`, `ID_PESAN_ULANG`, `ID
 (15, 12, 1, 10),
 (16, 13, 3, 20),
 (17, 14, 3, 20),
-(18, 15, 1, 40);
+(18, 15, 1, 40),
+(19, 18, 1, 1000),
+(20, 16, 2, 5),
+(21, 16, 1, 1),
+(22, 16, 3, 1),
+(23, 18, 1, 6),
+(24, 19, 2, 10),
+(25, 19, 2, 10);
 
 -- --------------------------------------------------------
 
@@ -102,7 +110,7 @@ CREATE TABLE `detail_surat_jalan` (
 
 INSERT INTO `detail_surat_jalan` (`ID_DETAIL_SURAT_JALAN`, `ID_SURAT_JALAN`, `ID_BARANG`, `JUMLAH_BAWA`, `JUMLAH_SISA`) VALUES
 (15, 9, 1, 10, 0),
-(16, 9, 2, 15, 15),
+(16, 9, 2, 15, 10),
 (17, 10, 1, 5, 0),
 (18, 10, 2, 5, 0),
 (19, 11, 2, 10, 0),
@@ -118,7 +126,8 @@ INSERT INTO `detail_surat_jalan` (`ID_DETAIL_SURAT_JALAN`, `ID_SURAT_JALAN`, `ID
 (35, 15, 1, 60, 0),
 (36, 16, 1, 50, 0),
 (37, 17, 1, 5, 0),
-(38, 18, 1, 50, 10);
+(38, 18, 1, 50, 9),
+(39, 19, 2, 12, 12);
 
 -- --------------------------------------------------------
 
@@ -152,9 +161,9 @@ CREATE TABLE `keys` (
   `user_id` int(11) NOT NULL,
   `key` varchar(40) NOT NULL,
   `level` int(2) NOT NULL,
-  `ignore_limits` tinyint(1) NOT NULL DEFAULT '0',
-  `is_private_key` tinyint(1) NOT NULL DEFAULT '0',
-  `ip_addresses` text,
+  `ignore_limits` tinyint(1) NOT NULL DEFAULT 0,
+  `is_private_key` tinyint(1) NOT NULL DEFAULT 0,
+  `ip_addresses` text DEFAULT NULL,
   `date_created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -260,12 +269,23 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`ID_PELANGGAN`, `ID_PENGGUNA`, `NAMA_PELANGGAN`, `EMAIL_PELANGGAN`, `NO_HP_PELANGGAN`, `ALAMAT_PELANGGAN`) VALUES
-(2, 5, 'Pras', 'pras@gmail.com', '0812442844821', 'Jalan Sapi Gede No.200'),
+(2, 5, 'Prasakul', 'prasaku@gmail.com', '0812442844822', 'Jalan Sapi Gede No.201'),
 (3, 7, 'Dimas', 'dimas@gmail.com', '081133334546', 'Jalan Perak Timur'),
 (4, 5, 'Hendro', 'hendero@gmail.com', '082288222233', 'jombang jawa timur'),
 (5, 7, 'Reza', 'rezauhuii@gmail.com', '082333828000', 'bekasi, jakarta'),
 (6, 5, 'irwan', 'irwan123@gmail.com', '082444555122', 'sidoarjo'),
-(7, 5, 'iman', 'khaeruliman@gmail.com', '0855345321654', 'sidoarjo');
+(7, 5, 'iman', 'khaeruliman@gmail.com', '0855345321654', 'sidoarjo'),
+(8, 5, 'masrizal', 'masrizal04@gmail.com', '089695615256', 'Kendal Pecabean RT 03 RW 01'),
+(9, 5, 'aris', 'aris@gmail.com', '0896555122', 'kendal'),
+(12, 9, 'Tes', 'pijardwi.pd@gmail.com', '089620127873', 'qwerty'),
+(13, 5, 'masru', 'masrizalsn@gmail.com', '0885124516', 'kendalcabe'),
+(15, 5, 'Zaidanudin', 'zaidan@gmail.com', '0891231456123', 'Mojokerto'),
+(17, 5, 'zilong', 'zilong@gmail.com', '08112311123', 'Kendari'),
+(18, 5, 'didin', 'gera@gmail.com', '08774441231', 'kendal'),
+(19, 5, 'dodot', 'dodot@gmail.com', '082123145611', 'Candi'),
+(20, 10, 'Pijar', 'pijardwi.pd@gmail.com', '081244284482', 'Jayanegara'),
+(22, 5, 'wakti', 'wak@gmail.com', '0891241441', 'kendal'),
+(23, 5, 'titit', 'titit@gmail..com', '0881234567', 'wes telaga bor');
 
 -- --------------------------------------------------------
 
@@ -321,10 +341,10 @@ INSERT INTO `pengguna` (`ID_PENGGUNA`, `ID_HAK_AKSES`, `NAMA_PENGGUNA`, `EMAIL_P
 (1, 1, 'Pijar Dwi Kusuma', 'pijardwi.pd@gmail.com', 'sqsa-01_(1)2.png', '$2y$10$6RudFOyMuHh/UR0vsu9c4Ofx7TFb1MlHSU9OfpOglldf2kvFnlD36', 1, '2020-10-05'),
 (3, 2, 'mohammad zaidan salim', 'supervisor@gmail.com', 'zaid.jpg', '$2y$10$hE7CiKLW/X8cr66yvD5zuOPlXvsHgCyC9PlGngZj5cSE5S/e/fJNS', 1, '2020-10-05'),
 (4, 3, 'Gudang MCT', 'gudang@gmail.com', '043552900_1572858828-71890045_694906974353654_3305990052531100815_n.jpg', '$2y$10$dT/Yf9OD3Lg1eI2AshUOhu0OmU6K2bJiwuRgbBIIsI5s5oJ4sUbZe', 1, '2020-10-05'),
-(5, 4, 'Dewi', 'sales@gmail.com', '1.jpg', '$2y$10$NevsXUioV59InL.j5xxVduewl7rSlNVRudB5Ccni1yxB6Mhfw8ajy', 1, '2020-10-05'),
+(5, 4, 'Dewi', 'sales@gmail.com', '1.jpg', '$2y$10$ABk1LdRjt526vkB2kuquA.XhnhCIn25EWL1QTS3tH5ahqnM.JymAC', 1, '2020-10-05'),
 (7, 4, 'Dian', 'sales2@gmail.com', '49966-artis-tik-tok-nadira-zerlinda-suaracomismail.jpg', '$2y$10$NevsXUioV59InL.j5xxVduewl7rSlNVRudB5Ccni1yxB6Mhfw8ajy', 1, '2020-10-23'),
-(9, 4, 'masrizal', 'masrizal04@gmail.com', 'default.jpg', '$2y$10$NBGFaLn5WbT/FXXKr7l57OuedYHVXpW1FY0179V46svFE3MllXeUu', 1, '2020-12-16'),
-(10, 4, 'pijar dwi kusima', 'pijar@gmail.com', 'default.jpg', '$2y$10$UVGU9i0hSb/df1OhGHTuNuxzJwz6FYxDh/DVi4RcsYckJ3iNpbksW', 1, '2020-12-16');
+(9, 4, 'yuliant', 'masrizal04@gmail.com', 'default.jpg', '$2y$10$ILmRxHx7o6mIEiai4NDVveyLKYZdEMLyG6P.rojPmYK8DyiaBvp3C', 1, '2020-12-16'),
+(10, 4, 'Pijar Dwi Kusuma', 'pijardwikusuma@gmail.com', 'default.jpg', '$2y$10$UVGU9i0hSb/df1OhGHTuNuxzJwz6FYxDh/DVi4RcsYckJ3iNpbksW', 1, '2020-12-16');
 
 -- --------------------------------------------------------
 
@@ -362,7 +382,9 @@ INSERT INTO `penjualan` (`ID_PENJUALAN`, `ID_DETAIL_SURAT_JALAN`, `ID_PENGGUNA`,
 (20, 34, 7, 3, '2020-10-28', 15, 'Transfer'),
 (21, 35, 7, 3, '2020-10-28', 10, 'Transfer'),
 (22, 21, 7, 3, '2020-10-28', 15, 'Tunai'),
-(23, 38, 5, 2, '2020-11-27', 40, 'Transfer');
+(23, 38, 5, 2, '2020-11-27', 40, 'Transfer'),
+(24, 16, 5, 23, '2021-01-21', 5, 'Transfer'),
+(25, 38, 5, 23, '2021-01-21', 1, 'Transfer');
 
 -- --------------------------------------------------------
 
@@ -395,7 +417,11 @@ INSERT INTO `pesan_ulang` (`ID_PESAN_ULANG`, `ID_PENGGUNA`, `ID_PELANGGAN`, `TGL
 (12, 7, 3, '2020-11-02', '1', 'Transfer'),
 (13, 5, 2, '2020-11-02', '1', 'Transfer'),
 (14, 7, 3, '2020-11-02', '2', 'Transfer'),
-(15, 5, 2, '2020-11-28', '1', 'Transfer');
+(15, 5, 2, '2020-11-28', '1', 'Transfer'),
+(16, 5, 23, '2021-01-15', '1', 'Transfer'),
+(17, 5, 15, '2021-01-18', '0', 'Tunai'),
+(18, 5, 17, '2021-01-18', '0', 'Transfer'),
+(19, 5, 8, '2021-01-19', '0', 'Tunai');
 
 -- --------------------------------------------------------
 
@@ -493,7 +519,7 @@ CREATE TABLE `surat_jalan` (
   `ID_SURAT_JALAN` int(11) NOT NULL,
   `ID_PENGGUNA` int(11) DEFAULT NULL,
   `NO_SURAT_JALAN` varchar(50) NOT NULL,
-  `STATUS_SURAT_JALAN` int(1) NOT NULL DEFAULT '0',
+  `STATUS_SURAT_JALAN` int(1) NOT NULL DEFAULT 0,
   `TGL_SURAT_JALAN` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -511,7 +537,9 @@ INSERT INTO `surat_jalan` (`ID_SURAT_JALAN`, `ID_PENGGUNA`, `NO_SURAT_JALAN`, `S
 (15, 7, 'SRJ-000007', 1, '2020-10-28'),
 (16, 5, 'SRJ-000008', 2, '2020-11-03'),
 (17, 5, 'SRJ-000009', 2, '2020-11-10'),
-(18, 5, 'SRJ-000010', 1, '2020-11-27');
+(18, 5, 'SRJ-000010', 1, '2020-11-27'),
+(19, 5, 'SRJ-000011', 0, '2021-01-21'),
+(20, 5, 'SRJ-000012', 0, '2021-01-21');
 
 --
 -- Indexes for dumped tables
@@ -647,19 +675,19 @@ ALTER TABLE `surat_jalan`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `ID_BARANG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_BARANG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `detail_pesan_ulang`
 --
 ALTER TABLE `detail_pesan_ulang`
-  MODIFY `ID_DETAIL_PESAN_ULANG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID_DETAIL_PESAN_ULANG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `detail_surat_jalan`
 --
 ALTER TABLE `detail_surat_jalan`
-  MODIFY `ID_DETAIL_SURAT_JALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `ID_DETAIL_SURAT_JALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `hak_akses`
@@ -695,7 +723,7 @@ ALTER TABLE `menu_pengguna`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `ID_PELANGGAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_PELANGGAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `pengembalian`
@@ -713,13 +741,13 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `ID_PENJUALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID_PENJUALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `pesan_ulang`
 --
 ALTER TABLE `pesan_ulang`
-  MODIFY `ID_PESAN_ULANG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID_PESAN_ULANG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `satuan`
@@ -743,7 +771,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `surat_jalan`
 --
 ALTER TABLE `surat_jalan`
-  MODIFY `ID_SURAT_JALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID_SURAT_JALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

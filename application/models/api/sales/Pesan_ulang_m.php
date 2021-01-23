@@ -35,6 +35,24 @@ class Pesan_ulang_m extends CI_Model
                 "
         )->result();
     }
+    
+    public function tambahDataPesanUlang($data)
+    {
+        $this->db->set('ID_PENGGUNA ', $data['ID_PENGGUNA']);
+        $this->db->set('ID_PELANGGAN ', $data['ID_PELANGGAN']);
+        $this->db->set('TGL_PESAN_ULANG ', $data['TGL_PESAN_ULANG']);
+        $this->db->set('STATUS_PESAN_ULANG ', 0);
+        $this->db->set('STATUS_PEMBAYARAN_PESAN_ULANG ', $data['STATUS_PEMBAYARAN_PESAN_ULANG']);
+        $this->db->insert('pesan_ulang');
+    }
+
+    public function tambahDetailPesanUlang($data)
+    {
+        $this->db->set('ID_PESAN_ULANG ', $data['ID_PESAN_ULANG']);
+        $this->db->set('ID_BARANG ', $data['ID_BARANG']);
+        $this->db->set('JUMLAH_PESAN_ULANG ', $data['JUMLAH_PESAN_ULANG']);
+        $this->db->insert('detail_pesan_ulang');
+    }
 
 }
 

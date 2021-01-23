@@ -13,7 +13,7 @@ class Surat_jalan_m extends CI_Model
         $query = $this->db->get();
         return $query;
     }
-
+    
     public function SuratJalanById($id_surat_jalan)
     {
         return $this->db->get_where('surat_jalan', ['ID_SURAT_JALAN' => $id_surat_jalan]);
@@ -29,7 +29,7 @@ class Surat_jalan_m extends CI_Model
                 "
         );
     }
-
+    
     public function noSJ()
     {
         $query = $this->db->query("SELECT MAX(NO_SURAT_JALAN) as nsj from surat_jalan");
