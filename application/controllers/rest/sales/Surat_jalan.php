@@ -178,6 +178,72 @@ class Surat_jalan extends CI_Controller
         $json = json_encode($respon);
         echo $json;
     }
+
+    public function pengembalian()
+    {
+        $id_penjualan = htmlspecialchars($this->input->post('id_penjualan'), true);
+        $api_key = htmlspecialchars($this->input->post('API-KEY'), true);
+
+        $cek_api_key = $this->api_m->CekApiKey($api_key);
+        if ($cek_api_key->num_rows() > 0) {
+
+            $datapnj = $this->db->query("
+                SELECT * FROM detail_surat_jalan dsj 
+                JOIN surat_jalan sj ON sj.ID_SURAT_JALAN = dsj.ID_SURAT_JALAN
+                JOIN barang b ON b.ID_BARANG = dsj.ID_BARANG
+                JOIN penjualan p ON p.ID_DETAIL_SURAT_JALAN = dsj.ID_DETAIL_SURAT_JALAN
+                JOIN pelanggan pl ON pl.ID_PELANGGAN = p.ID_PELANGGAN
+                JOIN pengembalian pmb ON pmb.ID_PENJUALAN = p.ID_PENJUALAN
+                WHERE p.ID_PENJUALAN = '$id_penjualan'")->result();
+
+            $respon = [
+                'status' => true,
+                'message' => "Data berhasil didapatkan",
+                'lihat_pengembalian' => $datapnj,
+            ];
+
+        }else {
+            $respon = [
+                'status' => false,
+                'message' => "Error API Key"
+            ];
+        }
+        $json = json_encode($respon);
+        echo $json;
+    }
+
+    public function pengembalian_tambah()
+    {
+        $id_penjualan = htmlspecialchars($this->input->post('id_penjualan'), true);
+        $tgl_pengembalian = date("Y-m-d", strtotime(htmlspecialchars($this->input->post('tgl_pengembalian'), true)));
+        $jumlah_kembali = htmlspecialchars($this->input->post('jumlah_kembali'), true);
+        $ket_pengembalian = htmlspecialchars($this->input->post('ket_pengembalian'), true);
+        $api_key = htmlspecialchars($this->input->post('API-KEY'), true);
+
+        $cek_api_key = $this->api_m->CekApiKey($api_key);
+        if ($cek_api_key->num_rows() > 0) {
+
+            $data = [
+                'ID_PENJUALAN' => $id_penjualan,
+                'TGL_PENGEMBALIAN' => $tgl_pengembalian,
+                'JUMLAH_PENGEMBALIAN' => $jumlah_kembali,
+                'KETERANGAN_PENGEMBALIAN' => $ket_pengembalian
+            ];
+            $this->db->insert('pengembalian', $data);
+
+            $respon = [
+                'status' => true,
+                'message' => "Data berhasil diinputkan"
+            ];
+        }else {
+            $respon = [
+                'status' => false,
+                'message' => "Error API Key"
+            ];
+        }
+        $json = json_encode($respon);
+        echo $json;
+    }
 }
 
 /* End of file Surat_jala.php */
