@@ -3,6 +3,13 @@ UPDATE NOTE
 *******************
 
 *******************
+Version 1.1.0 (Beta) 27 Januari 2021
+*******************
+* API untuk cos mobile sudah selesai
+* Target berikutnya adalah PDF dan tracking data
+* Perlu dicatat ada beberapa kekurangan untuk aplikasi mobilenya : blm bisa edit gambar profile, searching data, line di editText tidak terlihat, dan belum sorting by id (DESC)
+
+*******************
 Version 1.0.6 (Beta) 13 Januari 2021
 *******************
 * Menampilkan semua data pesan ulang

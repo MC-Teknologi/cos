@@ -144,7 +144,41 @@ class Surat_jalan extends CI_Controller
 
     public function tambah_barang_detail()
     {
-        # code...
+        $id_surat_jalan = htmlspecialchars($this->input->post('id_surat_jalan'), true);
+        $id_barang = htmlspecialchars($this->input->post('id_barang'), true);
+        $jumlah_bawa = htmlspecialchars($this->input->post('jumlah_bawa'), true);
+        $api_key = htmlspecialchars($this->input->post('API-KEY'), true);
+
+        $cek_api_key = $this->api_m->CekApiKey($api_key);
+        if ($cek_api_key->num_rows() > 0) {
+            
+            $data = [
+                'ID_SURAT_JALAN' => $id_surat_jalan,
+                'ID_BARANG' => $id_barang,
+                'JUMLAH_BAWA' => $jumlah_bawa,
+                'JUMLAH_SISA' => $jumlah_bawa
+            ];
+            $this->db->insert('detail_surat_jalan', $data);
+
+            $stok_barang = $this->surat_jalan_m->data_barang($id_barang)->row();
+            
+            $jml_sisa_stok = $stok_barang->STOK_BARANG - $jumlah_bawa;
+            $this->db->where('ID_BARANG', $id_barang);
+            $this->db->update('barang', ['STOK_BARANG' => $jml_sisa_stok]);
+
+            $respon = [
+                'status' => true,
+                'message' => "Data berhasil diinputkan"
+            ];
+
+        }else {
+            $respon = [
+                'status' => false,
+                'message' => "Error API Key"
+            ];
+        }
+        $json = json_encode($respon);
+        echo $json;
     }
 
     public function lihat_penjualan()

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 23, 2021 at 05:06 AM
+-- Generation Time: Jan 27, 2021 at 07:21 AM
 -- Server version: 10.3.27-MariaDB
 -- PHP Version: 7.3.6
 
@@ -44,7 +44,7 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`ID_BARANG`, `ID_PENGGUNA`, `ID_SUPPLIER`, `ID_SATUAN`, `NAMA_BARANG`, `STOK_BARANG`, `HARGA_BELI_BARANG`, `HARGA_JUAL_BARANG`) VALUES
-(1, 4, 1, 5, 'Baju', 99, 20000, 30000),
+(1, 4, 1, 5, 'Baju', 98, 20000, 30000),
 (2, 4, 4, 5, 'Tas', 83, 30000, 45000),
 (3, 4, 1, 5, 'Sepatu', 99, 80000, 120000);
 
@@ -126,8 +126,9 @@ INSERT INTO `detail_surat_jalan` (`ID_DETAIL_SURAT_JALAN`, `ID_SURAT_JALAN`, `ID
 (35, 15, 1, 60, 0),
 (36, 16, 1, 50, 0),
 (37, 17, 1, 5, 0),
-(38, 18, 1, 50, 9),
-(39, 19, 2, 12, 12);
+(38, 18, 1, 50, 4),
+(39, 19, 2, 12, 12),
+(43, 20, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -314,7 +315,9 @@ INSERT INTO `pengembalian` (`ID_PENGEMBALIAN`, `ID_PENJUALAN`, `TGL_PENGEMBALIAN
 (11, 14, '2020-10-27', 90, '10 barangr usak, 80 kadaluarsa'),
 (12, 15, '2020-10-27', 200, 'barang tidak laku'),
 (13, 15, '2020-10-27', 50, 'barang tidak laku'),
-(14, 14, '2020-10-27', 10, '10 barangr usak');
+(14, 14, '2020-10-27', 10, '10 barangr usak'),
+(15, 8, '2021-01-25', 2, 'Cacat bro'),
+(16, 8, '2021-01-26', 1, 'cacat');
 
 -- --------------------------------------------------------
 
@@ -384,7 +387,8 @@ INSERT INTO `penjualan` (`ID_PENJUALAN`, `ID_DETAIL_SURAT_JALAN`, `ID_PENGGUNA`,
 (22, 21, 7, 3, '2020-10-28', 15, 'Tunai'),
 (23, 38, 5, 2, '2020-11-27', 40, 'Transfer'),
 (24, 16, 5, 23, '2021-01-21', 5, 'Transfer'),
-(25, 38, 5, 23, '2021-01-21', 1, 'Transfer');
+(25, 38, 5, 23, '2021-01-21', 1, 'Transfer'),
+(26, 38, 5, 23, '2021-01-27', 5, 'Transfer');
 
 -- --------------------------------------------------------
 
@@ -687,7 +691,7 @@ ALTER TABLE `detail_pesan_ulang`
 -- AUTO_INCREMENT for table `detail_surat_jalan`
 --
 ALTER TABLE `detail_surat_jalan`
-  MODIFY `ID_DETAIL_SURAT_JALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `ID_DETAIL_SURAT_JALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `hak_akses`
@@ -729,7 +733,7 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
-  MODIFY `ID_PENGEMBALIAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID_PENGEMBALIAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
@@ -741,7 +745,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `ID_PENJUALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID_PENJUALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `pesan_ulang`
