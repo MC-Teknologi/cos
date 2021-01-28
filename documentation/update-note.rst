@@ -3,6 +3,11 @@ UPDATE NOTE
 *******************
 
 *******************
+Version 1.1.1 (Beta) 28 Januari 2021
+*******************
+* API untuk seluruh feature sudah selesai.
+
+*******************
 Version 1.1.0 (Beta) 27 Januari 2021
 *******************
 * API untuk cos mobile sudah selesai

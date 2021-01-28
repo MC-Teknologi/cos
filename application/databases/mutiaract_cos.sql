@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 27, 2021 at 07:21 AM
+-- Generation Time: Jan 28, 2021 at 07:20 AM
 -- Server version: 10.3.27-MariaDB
 -- PHP Version: 7.3.6
 
@@ -286,7 +286,8 @@ INSERT INTO `pelanggan` (`ID_PELANGGAN`, `ID_PENGGUNA`, `NAMA_PELANGGAN`, `EMAIL
 (19, 5, 'dodot', 'dodot@gmail.com', '082123145611', 'Candi'),
 (20, 10, 'Pijar', 'pijardwi.pd@gmail.com', '081244284482', 'Jayanegara'),
 (22, 5, 'wakti', 'wak@gmail.com', '0891241441', 'kendal'),
-(23, 5, 'titit', 'titit@gmail..com', '0881234567', 'wes telaga bor');
+(23, 5, 'titit', 'titit@gmail..com', '0881234567', 'wes telaga bor'),
+(25, 5, 'win', 'win@gmail.com', '085242222111', 'surabaya');
 
 -- --------------------------------------------------------
 
@@ -425,7 +426,9 @@ INSERT INTO `pesan_ulang` (`ID_PESAN_ULANG`, `ID_PENGGUNA`, `ID_PELANGGAN`, `TGL
 (16, 5, 23, '2021-01-15', '1', 'Transfer'),
 (17, 5, 15, '2021-01-18', '0', 'Tunai'),
 (18, 5, 17, '2021-01-18', '0', 'Transfer'),
-(19, 5, 8, '2021-01-19', '0', 'Tunai');
+(19, 5, 8, '2021-01-19', '0', 'Tunai'),
+(20, 5, 9, '2021-01-27', '0', 'Tunai'),
+(21, 5, 25, '2021-01-27', '0', 'Transfer');
 
 -- --------------------------------------------------------
 
@@ -727,7 +730,7 @@ ALTER TABLE `menu_pengguna`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `ID_PELANGGAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID_PELANGGAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `pengembalian`
@@ -751,7 +754,7 @@ ALTER TABLE `penjualan`
 -- AUTO_INCREMENT for table `pesan_ulang`
 --
 ALTER TABLE `pesan_ulang`
-  MODIFY `ID_PESAN_ULANG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID_PESAN_ULANG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `satuan`

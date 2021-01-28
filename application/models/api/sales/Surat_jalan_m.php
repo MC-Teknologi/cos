@@ -13,7 +13,7 @@ class Surat_jalan_m extends CI_Model
         $query = $this->db->get();
         return $query;
     }
-
+    
     public function data_barang($id_barang)
     {
         $this->db->select('STOK_BARANG');

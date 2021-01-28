@@ -118,6 +118,223 @@ class Pesan_ulang extends CI_Controller
         $json = json_encode($respon);
         echo $json;
     }
+    public function cetak()
+    {
+        $this->load->library('Pdf');
+        $id_pesan_ulang2 = $this->input->get('idps');
+        $idp = $this->input->get('idp');
+        $tgl = date('Y-m-d');
+        $data['user'] = $this->db->get_where('pengguna', ['ID_PENGGUNA' => $idp])->row_array();
+        $data['pesan_ulang'] = $this->db->query(
+            "
+                SELECT * FROM pesan_ulang pu 
+                JOIN pengguna p ON p.ID_PENGGUNA = pu.ID_PENGGUNA
+                JOIN pelanggan pl ON pl.ID_PELANGGAN = pu.ID_PELANGGAN
+                WHERE pu.ID_PESAN_ULANG = '$id_pesan_ulang2'
+                "
+        )->row();
+        $data['detail_pesan_ulang'] = $this->db->query(
+            "
+                SELECT * FROM detail_pesan_ulang dpu 
+                JOIN barang b ON b.ID_BARANG = dpu.ID_BARANG
+                JOIN satuan s ON s.ID_SATUAN = b.ID_SATUAN
+                WHERE dpu.ID_PESAN_ULANG = '$id_pesan_ulang2'
+                "
+        )->result();
+        $tgls = date("Y-m-d");
+        error_reporting(0); // AGAR ERROR MASALAH VERSI PHP TIDAK MUNCUL
+
+        $pdf = new FPDF('P', 'mm', 'A5');
+        $pdf->AddPage();
+        $pdf->SetFont('Times', 'B', 16);
+        $pdf->Cell(0, 7, 'MUTIARA CEMERLANG TEKNOLOGI', 0, 1, 'C');
+        $pdf->SetFont('Times', '', 10);
+        $pdf->Cell(0, 7, 'Alamat : Jl. Raya Wates No.3, Kec. Tanggulangin, Kabupaten Sidoarjo', 0, 1, 'C');
+        $pdf->Cell(0, 7, 'Email : info@mutiaract.com, Telp/HP : 082328382002', 0, 1, 'C');
+        $pdf->Cell(0, 1, '________________________________________________________________________', 0, 1, 'C');
+        $pdf->SetFont('Times', '', 7);
+        $pdf->Cell(0, 1, '_______________________________________________________________________________________________________', 0, 1, 'C');
+        $pdf->Ln(8);
+
+        $pdf->SetFont('Arial', 'B', 14);
+        $pdf->Cell(0, 7, 'SURAT JALAN', 0, 1, 'C');
+        $pdf->Cell(20, 7, '', 0, 1);
+
+        //$pdf->Ln(20);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->Cell(30, 6, 'Nama Sales', 0, 0, 'L');
+        $pdf->Cell(5, 6, ':', 0, 0, 'L');
+        $pdf->Cell(30, 6, $data['pesan_ulang']->NAMA_PENGGUNA, 0, 0, 'L');
+
+        $pdf->Cell(30, 6, 'Tanggal', 0, 0, 'L');
+        $pdf->Cell(5, 6, ':', 0, 0, 'L');
+        $pdf->Cell(30, 6, date_indo($data['pesan_ulang']->TGL_PESAN_ULANG), 0, 1, 'L');
+
+        $pdf->Cell(30, 6, 'Nama Pelanggan', 0, 0, 'L');
+        $pdf->Cell(5, 6, ':', 0, 0, 'L');
+        $pdf->Cell(30, 6, $data['pesan_ulang']->NAMA_PELANGGAN, 0, 0, 'L');
+
+        $pdf->Cell(30, 6, 'HP Pelanggan', 0, 0, 'L');
+        $pdf->Cell(5, 6, ':', 0, 0, 'L');
+        $pdf->Cell(30, 6, $data['pesan_ulang']->NO_HP_PELANGGAN, 0, 1, 'L');
+
+        $pdf->Cell(30, 6, 'Pembayaran', 0, 0, 'L');
+        $pdf->Cell(5, 6, ':', 0, 0, 'L');
+        $pdf->Cell(30, 6, $data['pesan_ulang']->STATUS_PEMBAYARAN_PESAN_ULANG, 0, 1, 'L');
+
+        $pdf->Ln(10);
+
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->Cell(10, 6, 'No', 1, 0, 'C');
+        $pdf->Cell(40, 6, 'Nama Barang', 1, 0, 'C');
+        $pdf->Cell(30, 6, 'Jumlah Barang', 1, 0, 'C');
+        $pdf->Cell(20, 6, 'Satuan', 1, 0, 'C');
+        $pdf->Cell(30, 6, 'Sub Total', 1, 1, 'C');
+
+        $pdf->SetFont('Arial', '', 10);
+        $no = 0;
+        $ttl = 0;
+        foreach ($data['detail_pesan_ulang'] as $dpu) {
+            $no++;
+            $sub = $dpu->HARGA_JUAL_BARANG * $dpu->JUMLAH_PESAN_ULANG;
+            $pdf->Cell(10, 6, $no, 1, 0, 'C');
+            $pdf->Cell(40, 6, $dpu->NAMA_BARANG, 1, 0);
+            $pdf->Cell(30, 6, $dpu->JUMLAH_PESAN_ULANG, 1, 0,'C');
+            $pdf->Cell(20, 6, $dpu->NAMA_SATUAN, 1, 0,'C');
+            $pdf->Cell(30, 6, 'Rp. '.number_format($sub), 1, 1,'C');
+            $ttl = $ttl + $sub;
+        }
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->Cell(100, 6, 'Total ', 1, 0,'C');
+        $pdf->Cell(30, 6, 'Rp. '.number_format($ttl), 1, 1,'C');
+
+        $pdf->SetY(-65);
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->line($pdf->GetX(), $pdf->GetY(), $pdf->GetX(), $pdf->GetY());
+        $pdf->SetY(-65);
+        $pdf->SetX(0);
+        $pdf->Ln(1);
+
+        $pdf->Cell(90, 6, '', 0, 0, 'C');
+        $pdf->Cell(40, 6, 'Sidoarjo, ' . date_indo($data['pesan_ulang']->TGL_PESAN_ULANG), 0, 1, 'C');
+
+        $pdf->SetY(-55);
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->line($pdf->GetX(), $pdf->GetY(), $pdf->GetX(), $pdf->GetY());
+        $pdf->SetY(-55);
+        $pdf->SetX(0);
+        $pdf->Ln(1);
+
+        $pdf->Cell(90, 6, '', 0, 0, 'C');
+        $pdf->Cell(40, 6, 'Sales', 0, 1, 'C');
+
+        $pdf->SetY(-30);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->line($pdf->GetX(), $pdf->GetY(), $pdf->GetX(), $pdf->GetY());
+        $pdf->SetY(-30);
+        $pdf->SetX(0);
+        $pdf->Ln(1);
+
+        $pdf->Cell(50, 6, 'LEMBAR UNTUK PELANGGAN', 1, 0, 'C');
+        $pdf->Cell(40, 6, '', 0, 0, 'C');
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->Cell(40, 6, '('.$data['pesan_ulang']->NAMA_PENGGUNA.')', 0, 1, 'C');
+
+
+        /*$hal = 'Page : '.$pdf->PageNo().'/{nb}' ;
+        $pdf->Cell($pdf->GetStringWidth($hal ),10,$hal );   
+        $datestring = date("d F Y");
+        $tanggal  = 'Printed : '.date('d-m-Y  h:i-a').' ';
+        $pdf->Cell($lebar-$pdf->GetStringWidth($hal )-$pdf->GetStringWidth($tanggal)-20);   
+        $pdf->Cell($pdf->GetStringWidth($tanggal),10,$tanggal );*/
+        $pdf->AddPage();
+
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Cell(0, 7, 'SURAT JALAN', 0, 1, 'C');
+        $pdf->Cell(20, 7, '', 0, 1);
+
+        //$pdf->Ln(20);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->Cell(30, 6, 'Nama Sales', 0, 0, 'L');
+        $pdf->Cell(5, 6, ':', 0, 0, 'L');
+        $pdf->Cell(30, 6, $data['pesan_ulang']->NAMA_PENGGUNA, 0, 0, 'L');
+
+        $pdf->Cell(30, 6, 'Tanggal', 0, 0, 'L');
+        $pdf->Cell(5, 6, ':', 0, 0, 'L');
+        $pdf->Cell(30, 6, date_indo($data['pesan_ulang']->TGL_PESAN_ULANG), 0, 1, 'L');
+
+        $pdf->Cell(30, 6, 'Nama Pelanggan', 0, 0, 'L');
+        $pdf->Cell(5, 6, ':', 0, 0, 'L');
+        $pdf->Cell(30, 6, $data['pesan_ulang']->NAMA_PELANGGAN, 0, 0, 'L');
+
+        $pdf->Cell(30, 6, 'HP Pelanggan', 0, 0, 'L');
+        $pdf->Cell(5, 6, ':', 0, 0, 'L');
+        $pdf->Cell(30, 6, $data['pesan_ulang']->NO_HP_PELANGGAN, 0, 1, 'L');
+
+        $pdf->Cell(30, 6, 'Pembayaran', 0, 0, 'L');
+        $pdf->Cell(5, 6, ':', 0, 0, 'L');
+        $pdf->Cell(30, 6, $data['pesan_ulang']->STATUS_PEMBAYARAN_PESAN_ULANG, 0, 1, 'L');
+
+        $pdf->Ln(10);
+
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->Cell(10, 6, 'No', 1, 0, 'C');
+        $pdf->Cell(40, 6, 'Nama Barang', 1, 0, 'C');
+        $pdf->Cell(30, 6, 'Jumlah Barang', 1, 0, 'C');
+        $pdf->Cell(20, 6, 'Satuan', 1, 0, 'C');
+        $pdf->Cell(30, 6, 'Sub Total', 1, 1, 'C');
+
+        $pdf->SetFont('Arial', '', 10);
+        $no = 0;
+        $ttl = 0;
+        foreach ($data['detail_pesan_ulang'] as $dpu) {
+            $no++;
+            $sub = $dpu->HARGA_JUAL_BARANG * $dpu->JUMLAH_PESAN_ULANG;
+            $pdf->Cell(10, 6, $no, 1, 0, 'C');
+            $pdf->Cell(40, 6, $dpu->NAMA_BARANG, 1, 0);
+            $pdf->Cell(30, 6, $dpu->JUMLAH_PESAN_ULANG, 1, 0,'C');
+            $pdf->Cell(20, 6, $dpu->NAMA_SATUAN, 1, 0,'C');
+            $pdf->Cell(30, 6, 'Rp. '.number_format($sub), 1, 1,'C');
+            $ttl = $ttl + $sub;
+        }
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->Cell(100, 6, 'Total ', 1, 0,'C');
+        $pdf->Cell(30, 6, 'Rp. '.number_format($ttl), 1, 1,'C');
+
+        $pdf->SetY(-65);
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->line($pdf->GetX(), $pdf->GetY(), $pdf->GetX(), $pdf->GetY());
+        $pdf->SetY(-65);
+        $pdf->SetX(0);
+        $pdf->Ln(1);
+
+        $pdf->Cell(90, 6, '', 0, 0, 'C');
+        $pdf->Cell(40, 6, 'Sidoarjo, ' . date_indo($data['pesan_ulang']->TGL_PESAN_ULANG), 0, 1, 'C');
+
+        $pdf->SetY(-55);
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->line($pdf->GetX(), $pdf->GetY(), $pdf->GetX(), $pdf->GetY());
+        $pdf->SetY(-55);
+        $pdf->SetX(0);
+        $pdf->Ln(1);
+
+        $pdf->Cell(90, 6, '', 0, 0, 'C');
+        $pdf->Cell(40, 6, 'Supervisor', 0, 1, 'C');
+
+        $pdf->SetY(-30);
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->line($pdf->GetX(), $pdf->GetY(), $pdf->GetX(), $pdf->GetY());
+        $pdf->SetY(-30);
+        $pdf->SetX(0);
+        $pdf->Ln(1);
+
+        $pdf->Cell(50, 6, 'LEMBAR UNTUK ARSIP', 1, 0, 'C');
+        $pdf->Cell(40, 6, '', 0, 0, 'C');
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->Cell(40, 6, '(......................................)', 0, 1, 'C');
+
+        $pdf->Output();
+    }
 
 }
 

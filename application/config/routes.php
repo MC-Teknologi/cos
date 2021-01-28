@@ -104,7 +104,7 @@ $route['sales/pesan_ulang_tambah'] = 'sales/Pesan_ulang_c/tambah';
 
 $route['sales/pesan_ulang_cetak/(:any)'] = 'sales/Pesan_ulang_c/cetak/$1';
 
-
+$route['sales/pesan_ulang_cetak_andro?(:any)'] = 'rest/sales/Pesan_ulang/cetak?$1';
 
 
 
@@ -136,7 +136,7 @@ $route['supervisor/tolak_pesan_ulang/(:any)'] = 'supervisor/Verif_pesan_ulang_c/
 
 $route['laporan/penjualan'] = 'laporan/L_penjualan_c/index';
 
-$route['laporan/penjualang2'] = 'laporan/L_penjualan_c2/cetakg';
+$route['laporan/penjualan_andro/(:any)'] = 'rest/laporan/Laporan_penjualan/cetak/$1';
 
 $route['laporan/penjualan2'] = 'laporan/L_penjualan_c2/cetak';
 
@@ -156,6 +156,8 @@ $route['laporan/pengembalian_view'] = 'laporan/L_pengembalian_c/view';
 
 $route['laporan/pengembalian_cetak'] = 'laporan/L_pengembalian_c/cetak';
 
+$route['laporan/pengembalian_andro/(:any)'] = 'rest/laporan/Laporan_pengembalian/cetak/$1';
+
 
 
 $route['laporan/pesanulang'] = 'laporan/L_pesanulang_c/index';
@@ -163,6 +165,8 @@ $route['laporan/pesanulang'] = 'laporan/L_pesanulang_c/index';
 $route['laporan/pesanulang_view'] = 'laporan/L_pesanulang_c/view';
 
 $route['laporan/pesanulang_cetak'] = 'laporan/L_pesanulang_c/cetak';
+
+$route['laporan/pesanulang_andro/(:any)'] = 'rest/laporan/Laporan_pesan_ulang/cetak/$1';
 
 $route['laporan/sales_cetak'] = 'laporan/L_sales_c/cetak';
 
