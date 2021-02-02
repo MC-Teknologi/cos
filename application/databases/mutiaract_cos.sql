@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 28, 2021 at 07:20 AM
+-- Generation Time: Feb 02, 2021 at 02:42 AM
 -- Server version: 10.3.27-MariaDB
 -- PHP Version: 7.3.6
 
@@ -110,7 +110,7 @@ CREATE TABLE `detail_surat_jalan` (
 
 INSERT INTO `detail_surat_jalan` (`ID_DETAIL_SURAT_JALAN`, `ID_SURAT_JALAN`, `ID_BARANG`, `JUMLAH_BAWA`, `JUMLAH_SISA`) VALUES
 (15, 9, 1, 10, 0),
-(16, 9, 2, 15, 10),
+(16, 9, 2, 15, 5),
 (17, 10, 1, 5, 0),
 (18, 10, 2, 5, 0),
 (19, 11, 2, 10, 0),
@@ -129,6 +129,165 @@ INSERT INTO `detail_surat_jalan` (`ID_DETAIL_SURAT_JALAN`, `ID_SURAT_JALAN`, `ID
 (38, 18, 1, 50, 4),
 (39, 19, 2, 12, 12),
 (43, 20, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gps`
+--
+
+CREATE TABLE `gps` (
+  `IDGPS` int(11) NOT NULL,
+  `ID_PENGGUNA` int(11) NOT NULL,
+  `LATITUDE` varchar(100) NOT NULL,
+  `LONGTITUDE` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `gps`
+--
+
+INSERT INTO `gps` (`IDGPS`, `ID_PENGGUNA`, `LATITUDE`, `LONGTITUDE`) VALUES
+(82, 5, '-7.4511557', '112.7007179'),
+(83, 0, '-7.4511559', '112.7007072'),
+(84, 0, '-7.4511956', '112.7007301'),
+(85, 5, '-7.4511864', '112.7007312'),
+(86, 0, '-7.4511559', '112.7007072'),
+(87, 5, '-7.4511889', '112.7007343'),
+(88, 5, '-7.451156', '112.7007127'),
+(89, 5, '-7.45106476', '112.70072974'),
+(90, 5, '-7.45310014', '112.70039793'),
+(91, 5, '-7.4511417', '112.7009228'),
+(92, 5, '-7.45132293', '112.70089832'),
+(93, 5, '-7.45127396', '112.70088185'),
+(94, 5, '-7.4481463', '112.7015228'),
+(95, 5, '-7.4482676', '112.7013321'),
+(96, 5, '-7.4465233', '112.6988663'),
+(97, 5, '-7.4475097', '112.69925151'),
+(98, 5, '-7.44754837', '112.69919614'),
+(99, 5, '-7.4497679', '112.6994489'),
+(100, 5, '-7.44981704', '112.69964633'),
+(101, 5, '-7.44985318', '112.69968649'),
+(102, 5, '-7.44993045', '112.69965511'),
+(103, 5, '-7.44997', '112.69962269'),
+(104, 5, '-7.45001648', '112.69960134'),
+(105, 5, '-7.45006705', '112.69959105'),
+(106, 5, '-7.45011946', '112.69957598'),
+(107, 5, '-7.450222', '112.6994582'),
+(108, 5, '-7.45018421', '112.69955125'),
+(109, 5, '-7.45023169', '112.69953703'),
+(110, 5, '-7.45027895', '112.69952507'),
+(111, 5, '-7.45032467', '112.69951372'),
+(112, 5, '-7.45037437', '112.69950064'),
+(113, 5, '-7.4502652', '112.6994308'),
+(114, 5, '-7.45036086', '112.69948548'),
+(115, 5, '-7.45033026', '112.69951217'),
+(116, 5, '-7.45037857', '112.69950665'),
+(117, 5, '-7.4504301', '112.69947718'),
+(118, 5, '-7.4504301', '112.69947718'),
+(119, 5, '-7.45048161', '112.69945244'),
+(120, 5, '-7.45048161', '112.69945244'),
+(121, 5, '-7.45053416', '112.69942926'),
+(122, 5, '-7.45053416', '112.69942926'),
+(123, 5, '-7.45059256', '112.69940773'),
+(124, 5, '-7.45059256', '112.69940773'),
+(125, 5, '-7.45064639', '112.69939676'),
+(126, 5, '-7.45064639', '112.69939676'),
+(127, 5, '-7.45069477', '112.69940232'),
+(128, 5, '-7.45069477', '112.69940232'),
+(129, 5, '-7.45072561', '112.69945892'),
+(130, 5, '-7.45072561', '112.69945892'),
+(131, 5, '-7.45073734', '112.69951434'),
+(132, 5, '-7.45073734', '112.69951434'),
+(133, 5, '-7.4507556', '112.69957632'),
+(134, 5, '-7.4507556', '112.69957632'),
+(135, 5, '-7.45077742', '112.69965593'),
+(136, 5, '-7.45077742', '112.69965593'),
+(137, 5, '-7.45080241', '112.69974221'),
+(138, 5, '-7.45080241', '112.69974221'),
+(139, 5, '-7.45081445', '112.69979947'),
+(140, 5, '-7.45081445', '112.69979947'),
+(141, 5, '-7.45084484', '112.69988299'),
+(142, 5, '-7.45084484', '112.69988299'),
+(143, 5, '-7.45085954', '112.69992765'),
+(144, 5, '-7.45085954', '112.69992765'),
+(145, 5, '-7.45088232', '112.69999877'),
+(146, 5, '-7.45088232', '112.69999877'),
+(147, 5, '-7.45091156', '112.70009195'),
+(148, 5, '-7.45091156', '112.70009195'),
+(149, 5, '-7.45092793', '112.70013989'),
+(150, 5, '-7.45092793', '112.70013989'),
+(151, 5, '-7.450952', '112.70020674'),
+(152, 5, '-7.450952', '112.70020674'),
+(153, 5, '-7.45097223', '112.70026791'),
+(154, 5, '-7.45097223', '112.70026791'),
+(155, 5, '-7.45099869', '112.70035443'),
+(156, 5, '-7.45099869', '112.70035443'),
+(157, 5, '-7.45102608', '112.70043793'),
+(158, 5, '-7.45102608', '112.70043793'),
+(159, 5, '-7.45105104', '112.70052133'),
+(160, 5, '-7.45105104', '112.70052133'),
+(161, 5, '-7.45107296', '112.70060299'),
+(162, 5, '-7.45107296', '112.70060299'),
+(163, 5, '-7.45109404', '112.70067505'),
+(164, 5, '-7.45109404', '112.70067505'),
+(165, 5, '-7.45112148', '112.70073471'),
+(166, 5, '-7.45112148', '112.70073471'),
+(167, 5, '-7.45117537', '112.70073891'),
+(168, 5, '-7.45117537', '112.70073891'),
+(169, 5, '-7.45121598', '112.7007142'),
+(170, 5, '-7.45121598', '112.7007142'),
+(171, 5, '-7.45126589', '112.70073661'),
+(172, 5, '-7.45126589', '112.70073661'),
+(173, 5, '-7.45131289', '112.70072462'),
+(174, 5, '-7.45131289', '112.70072462'),
+(175, 5, '-7.45136731', '112.70073962'),
+(176, 5, '-7.45136731', '112.70073962'),
+(177, 5, '-7.45138867', '112.70078811'),
+(178, 5, '-7.45138867', '112.70078811'),
+(179, 5, '-7.4511848', '112.7007331'),
+(180, 5, '-7.4511848', '112.7007331'),
+(181, 5, '-7.45147105', '112.70075476'),
+(182, 5, '-7.45147105', '112.70075476'),
+(183, 5, '-7.45136562', '112.70072314'),
+(184, 5, '-7.45136562', '112.70072314'),
+(185, 5, '-7.45132128', '112.70070003'),
+(186, 5, '-7.45132128', '112.70070003'),
+(187, 5, '-7.4511861', '112.7007318'),
+(188, 5, '-7.45132511', '112.70069867'),
+(189, 5, '-7.4511901', '112.700733'),
+(190, 5, '-7.45133765', '112.70068662'),
+(191, 5, '-7.45133608', '112.70069058'),
+(192, 5, '-7.4511733', '112.7007052'),
+(193, 5, '-7.4508155', '112.7001287'),
+(194, 5, '-7.4508155', '112.7001287'),
+(195, 5, '-7.4511546', '112.7007103'),
+(196, 5, '-7.4511546', '112.7007103'),
+(197, 5, '-7.4513333', '112.70068678'),
+(198, 5, '-7.4511886', '112.7007341'),
+(199, 5, '-7.45133265', '112.70068522'),
+(200, 5, '-7.4511955', '112.7007292'),
+(201, 5, '-7.4511956', '112.7007301'),
+(202, 5, '-7.4511956', '112.7007301'),
+(203, 5, '-7.4521379', '112.6990114'),
+(204, 5, '-7.4521379', '112.6990114'),
+(205, 5, '-7.4521379', '112.6990114'),
+(206, 5, '-7.4521379', '112.6990114'),
+(207, 5, '-7.4511632', '112.7007053'),
+(208, 5, '-7.4511632', '112.7007053'),
+(209, 5, '-7.4511632', '112.7007053'),
+(210, 5, '-7.4511632', '112.7007053'),
+(211, 5, '-7.4512017', '112.7007294'),
+(212, 5, '-7.4512017', '112.7007294'),
+(213, 5, '-7.4512017', '112.7007294'),
+(214, 5, '-7.4512017', '112.7007294'),
+(215, 5, '-7.4511909', '112.7007327'),
+(216, 5, '-7.45132242', '112.7006827'),
+(217, 5, '-7.4508155', '112.7001287'),
+(218, 5, '-7.451188', '112.7007263'),
+(219, 5, '-7.451188', '112.7007263'),
+(220, 5, '-7.4511989', '112.7007425'),
+(221, 5, '-7.4511993', '112.7007426');
 
 -- --------------------------------------------------------
 
@@ -286,7 +445,6 @@ INSERT INTO `pelanggan` (`ID_PELANGGAN`, `ID_PENGGUNA`, `NAMA_PELANGGAN`, `EMAIL
 (19, 5, 'dodot', 'dodot@gmail.com', '082123145611', 'Candi'),
 (20, 10, 'Pijar', 'pijardwi.pd@gmail.com', '081244284482', 'Jayanegara'),
 (22, 5, 'wakti', 'wak@gmail.com', '0891241441', 'kendal'),
-(23, 5, 'titit', 'titit@gmail..com', '0881234567', 'wes telaga bor'),
 (25, 5, 'win', 'win@gmail.com', '085242222111', 'surabaya');
 
 -- --------------------------------------------------------
@@ -318,7 +476,8 @@ INSERT INTO `pengembalian` (`ID_PENGEMBALIAN`, `ID_PENJUALAN`, `TGL_PENGEMBALIAN
 (13, 15, '2020-10-27', 50, 'barang tidak laku'),
 (14, 14, '2020-10-27', 10, '10 barangr usak'),
 (15, 8, '2021-01-25', 2, 'Cacat bro'),
-(16, 8, '2021-01-26', 1, 'cacat');
+(16, 8, '2021-01-26', 1, 'cacat'),
+(17, 8, '2021-02-01', 2, 'Mboh lapo');
 
 -- --------------------------------------------------------
 
@@ -342,10 +501,10 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`ID_PENGGUNA`, `ID_HAK_AKSES`, `NAMA_PENGGUNA`, `EMAIL_PENGGUNA`, `FOTO_PENGGUNA`, `PASSWORD_PENGGUNA`, `STATUS_AKTIF_PENGGUNA`, `TGL_DAFTAR_PENGGUNA`) VALUES
-(1, 1, 'Pijar Dwi Kusuma', 'pijardwi.pd@gmail.com', 'sqsa-01_(1)2.png', '$2y$10$6RudFOyMuHh/UR0vsu9c4Ofx7TFb1MlHSU9OfpOglldf2kvFnlD36', 1, '2020-10-05'),
+(1, 1, 'Pijar Dwi Kusuma', 'pijardwi.pd@gmail.com', 'swift2.png', '$2y$10$ahwcT4su2Dn7T5kcZOpdbesqyDwQOx9/cw1hoMifPtPo8iry4a2hu', 1, '2020-10-05'),
 (3, 2, 'mohammad zaidan salim', 'supervisor@gmail.com', 'zaid.jpg', '$2y$10$hE7CiKLW/X8cr66yvD5zuOPlXvsHgCyC9PlGngZj5cSE5S/e/fJNS', 1, '2020-10-05'),
 (4, 3, 'Gudang MCT', 'gudang@gmail.com', '043552900_1572858828-71890045_694906974353654_3305990052531100815_n.jpg', '$2y$10$dT/Yf9OD3Lg1eI2AshUOhu0OmU6K2bJiwuRgbBIIsI5s5oJ4sUbZe', 1, '2020-10-05'),
-(5, 4, 'Dewi', 'sales@gmail.com', '1.jpg', '$2y$10$ABk1LdRjt526vkB2kuquA.XhnhCIn25EWL1QTS3tH5ahqnM.JymAC', 1, '2020-10-05'),
+(5, 4, 'Dewi', 'sales@gmail.com', '5Dewi.jpg', '$2y$10$ABk1LdRjt526vkB2kuquA.XhnhCIn25EWL1QTS3tH5ahqnM.JymAC', 1, '2020-10-05'),
 (7, 4, 'Dian', 'sales2@gmail.com', '49966-artis-tik-tok-nadira-zerlinda-suaracomismail.jpg', '$2y$10$NevsXUioV59InL.j5xxVduewl7rSlNVRudB5Ccni1yxB6Mhfw8ajy', 1, '2020-10-23'),
 (9, 4, 'yuliant', 'masrizal04@gmail.com', 'default.jpg', '$2y$10$ILmRxHx7o6mIEiai4NDVveyLKYZdEMLyG6P.rojPmYK8DyiaBvp3C', 1, '2020-12-16'),
 (10, 4, 'Pijar Dwi Kusuma', 'pijardwikusuma@gmail.com', 'default.jpg', '$2y$10$UVGU9i0hSb/df1OhGHTuNuxzJwz6FYxDh/DVi4RcsYckJ3iNpbksW', 1, '2020-12-16');
@@ -389,7 +548,8 @@ INSERT INTO `penjualan` (`ID_PENJUALAN`, `ID_DETAIL_SURAT_JALAN`, `ID_PENGGUNA`,
 (23, 38, 5, 2, '2020-11-27', 40, 'Transfer'),
 (24, 16, 5, 23, '2021-01-21', 5, 'Transfer'),
 (25, 38, 5, 23, '2021-01-21', 1, 'Transfer'),
-(26, 38, 5, 23, '2021-01-27', 5, 'Transfer');
+(26, 38, 5, 23, '2021-01-27', 5, 'Transfer'),
+(27, 16, 5, 15, '2021-01-28', 5, 'Tunai');
 
 -- --------------------------------------------------------
 
@@ -428,7 +588,8 @@ INSERT INTO `pesan_ulang` (`ID_PESAN_ULANG`, `ID_PENGGUNA`, `ID_PELANGGAN`, `TGL
 (18, 5, 17, '2021-01-18', '0', 'Transfer'),
 (19, 5, 8, '2021-01-19', '0', 'Tunai'),
 (20, 5, 9, '2021-01-27', '0', 'Tunai'),
-(21, 5, 25, '2021-01-27', '0', 'Transfer');
+(21, 5, 25, '2021-01-27', '0', 'Transfer'),
+(22, 5, 17, '2021-01-30', '0', 'Tunai');
 
 -- --------------------------------------------------------
 
@@ -491,7 +652,8 @@ INSERT INTO `sub_menu_pengguna` (`ID_SUB_MENU_PENGGUNA`, `ID_MENU_PENGGUNA`, `JU
 (23, 7, 'Laporan Pesan Ulang', 'laporan/pesanulang', 'fas fa-fw fa-folder', 1),
 (27, 10, 'Dasbor', 'sales/dasbor', 'fas fa-fw fa-tachometer-alt', 1),
 (28, 9, 'Dasbor', 'gudang/dasbor', 'fas fa-fw fa-tachometer-alt', 1),
-(29, 11, 'Dasbor', 'supervisor/dasbor', 'fas fa-fw fa-tachometer-alt', 1);
+(29, 11, 'Dasbor', 'supervisor/dasbor', 'fas fa-fw fa-tachometer-alt', 1),
+(30, 6, 'Lacak Sales', 'supervisor/getgps', 'fas fa-map', 1);
 
 -- --------------------------------------------------------
 
@@ -546,7 +708,8 @@ INSERT INTO `surat_jalan` (`ID_SURAT_JALAN`, `ID_PENGGUNA`, `NO_SURAT_JALAN`, `S
 (17, 5, 'SRJ-000009', 2, '2020-11-10'),
 (18, 5, 'SRJ-000010', 1, '2020-11-27'),
 (19, 5, 'SRJ-000011', 0, '2021-01-21'),
-(20, 5, 'SRJ-000012', 0, '2021-01-21');
+(20, 5, 'SRJ-000012', 0, '2021-01-21'),
+(21, 5, 'SRJ-000013', 0, '2021-02-01');
 
 --
 -- Indexes for dumped tables
@@ -576,6 +739,13 @@ ALTER TABLE `detail_surat_jalan`
   ADD PRIMARY KEY (`ID_DETAIL_SURAT_JALAN`),
   ADD KEY `ID_SURAT_JALAN` (`ID_SURAT_JALAN`),
   ADD KEY `ID_BARANG` (`ID_BARANG`);
+
+--
+-- Indexes for table `gps`
+--
+ALTER TABLE `gps`
+  ADD PRIMARY KEY (`IDGPS`),
+  ADD KEY `ID_PENGGUNA` (`ID_PENGGUNA`);
 
 --
 -- Indexes for table `hak_akses`
@@ -697,6 +867,12 @@ ALTER TABLE `detail_surat_jalan`
   MODIFY `ID_DETAIL_SURAT_JALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
+-- AUTO_INCREMENT for table `gps`
+--
+ALTER TABLE `gps`
+  MODIFY `IDGPS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
+
+--
 -- AUTO_INCREMENT for table `hak_akses`
 --
 ALTER TABLE `hak_akses`
@@ -736,7 +912,7 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
-  MODIFY `ID_PENGEMBALIAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID_PENGEMBALIAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
@@ -748,13 +924,13 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `ID_PENJUALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID_PENJUALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `pesan_ulang`
 --
 ALTER TABLE `pesan_ulang`
-  MODIFY `ID_PESAN_ULANG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `ID_PESAN_ULANG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `satuan`
@@ -766,7 +942,7 @@ ALTER TABLE `satuan`
 -- AUTO_INCREMENT for table `sub_menu_pengguna`
 --
 ALTER TABLE `sub_menu_pengguna`
-  MODIFY `ID_SUB_MENU_PENGGUNA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID_SUB_MENU_PENGGUNA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `supplier`
@@ -778,7 +954,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `surat_jalan`
 --
 ALTER TABLE `surat_jalan`
-  MODIFY `ID_SURAT_JALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID_SURAT_JALAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

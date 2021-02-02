@@ -42,6 +42,14 @@ class Profil_m extends CI_Model
         $this->db->where('ID_PENGGUNA', $id_pengguna);
         $this->db->update('pengguna');
     }
+
+    public function ubahProfilDanGambar($id_pengguna, $nama_pengguna, $gambar)
+    {
+        $this->db->set('NAMA_PENGGUNA', $nama_pengguna);
+        $this->db->set('FOTO_PENGGUNA', $gambar);
+        $this->db->where('ID_PENGGUNA', $id_pengguna);
+        $this->db->update('pengguna');
+    }
 }
 
 /* End of file Profil_m.php */

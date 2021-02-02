@@ -124,6 +124,10 @@ $route['supervisor/tolak_surat_jalan/(:any)'] = 'supervisor/Verif_surat_jalan_c/
 
 $route['supervisor/verif_pesan_ulang'] = 'supervisor/Verif_pesan_ulang_c/index';
 
+$route['supervisor/getgps'] = 'supervisor/Getgps/index';
+
+$route['supervisor/datagps/getmap/(:any)'] = 'supervisor/Datagps/index/$1';
+
 $route['supervisor/pesan_ulang_detail/(:any)'] = 'supervisor/Verif_pesan_ulang_c/index/$1';
 
 $route['supervisor/verifikasi_pesan_ulang/(:any)'] = 'supervisor/Verif_pesan_ulang_c/verifikasi_pesan_ulang/$1';

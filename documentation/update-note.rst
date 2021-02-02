@@ -3,6 +3,11 @@ UPDATE NOTE
 *******************
 
 *******************
+Version 1.1.2 (Beta) 02 Feb 2021
+*******************
+* Tracking sales sudah selesai
+
+*******************
 Version 1.1.1 (Beta) 28 Januari 2021
 *******************
 * API untuk seluruh feature sudah selesai.
