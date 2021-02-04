@@ -21,14 +21,12 @@ class Ubah_profil extends CI_Controller
         if ($cek_api_key->num_rows() > 0) {
             if(!empty($this->input->post('picture'))){
             $image = base64_decode($this->input->post("picture"));
-            $image_name = $id_pengguna.''.$nama_pengguna;
+            $image_name = $id_pengguna;
             $filename = '.'.'jpg';
             $path = "assets/img/profile/".$image_name;
-
             //hapus file
             $this->load->helper("file");
             delete_files($path.'.jpg');
-            
                 if ( file_put_contents($path . $filename, $image) ) {
                         $this->profil_m->ubahProfilDanGambar($id_pengguna, $nama_pengguna, $image_name.''.$filename);
                         $respon = [
@@ -36,14 +34,15 @@ class Ubah_profil extends CI_Controller
                             'message' => "Data Profil berhasil diubah"
                         ];
                     } else {
-                        $this->profil_m->ubahProfilDanGambar($id_pengguna, $nama_pengguna, $image_name);
+                        
+                       // $this->profil_m->ubahProfilDanGambar($id_pengguna, $nama_pengguna, $image_name);
                         $respon = [
                             'status' => true,
                             'message' => "Data Profil gagal diubah"
                         ];
                     }
             }else{
-                $this->profil_m->ubahProfilDanGambar($id_pengguna, $nama_pengguna);
+                $this->db->query("UPDATE pengguna SET NAMA_PENGGUNA = '$nama_pengguna' WHERE ID_PENGGUNA = '$id_pengguna'");
                     $respon = [
                         'status' => true,
                         'message' => "Data Profil berhasil diubah"

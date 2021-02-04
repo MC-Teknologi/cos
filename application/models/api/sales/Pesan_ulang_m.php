@@ -10,6 +10,7 @@ class Pesan_ulang_m extends CI_Model
                 SELECT * FROM pesan_ulang pu 
                 JOIN pelanggan p ON p.ID_PELANGGAN = pu.ID_PELANGGAN
                 WHERE pu.ID_PENGGUNA = '$id_pengguna'
+                ORDER BY pu.ID_PESAN_ULANG DESC
                 "
         );
     }
@@ -32,6 +33,7 @@ class Pesan_ulang_m extends CI_Model
                 SELECT * FROM detail_pesan_ulang dpu 
                 JOIN barang b ON b.ID_BARANG = dpu.ID_BARANG
                 WHERE dpu.ID_PESAN_ULANG = '$id_pesan_ulang'
+                ORDER BY dpu.ID_DETAIL_PESAN_ULANG DESC
                 "
         )->result();
     }

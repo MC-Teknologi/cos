@@ -7,26 +7,21 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?php echo $title; ?></h1>
-
     <div class="row">
-        <div class="col-lg-8">
-
-            <div class="alert alert-warning" role="alert">
-                Data akan ditampilkan per 20 detik
-            </div>
-
+        <div class="col-lg-12">
             <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-            <script>
-            $(this).ready(function(){
-                setInterval(function(){
-                    $("#map").load('<?= base_url('supervisor/getgps/map/') . $id_pengguna ?>')
-                }, 20000);
-            });
-            </script>
-            <div id="map"></div>
-        </div>
-    </div>
+<script>
 
+$(this).ready(function(){
+	setInterval(function(){
+		$("#map").load('<?= base_url('supervisor/getgps/map/') . $id_pengguna ?>')
+    }, 5000);
+});
+</script>
+<div id="map"></div>
+        <!--<div id="map"></div>-->
+</div>
+</div>
 </div>
 
 </div>

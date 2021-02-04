@@ -2,8 +2,8 @@
 
 $data = $this->db->query("SELECT * FROM gps WHERE ID_PENGGUNA = '$idp' ORDER BY IDGPS DESC LIMIT 1")->result();
 foreach ($data as $dt) {
-	$lat = $dt->LATITUDE;
-	$long = $dt->LONGTITUDE;
+	echo $lat = $dt->LATITUDE;
+	echo $long = $dt->LONGTITUDE;
 }
 ?>
 <!--<script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>-->
@@ -21,7 +21,18 @@ foreach ($data as $dt) {
 /*}*/
 </style>
 <div id="map"></div>
-
+<!--<div id="menu">-->
+<!--<input id="streets-v11" type="radio" name="rtoggle" value="streets" checked="checked"/>-->
+<!--<label for="streets-v11">streets</label>-->
+<!--<input id="light-v10" type="radio" name="rtoggle" value="light" />-->
+<!--<label for="light-v10">light</label>-->
+<!--<input id="dark-v10" type="radio" name="rtoggle" value="dark" />-->
+<!--<label for="dark-v10">dark</label>-->
+<!--<input id="outdoors-v11" type="radio" name="rtoggle" value="outdoors" />-->
+<!--<label for="outdoors-v11">outdoors</label>-->
+<!--<input id="satellite-v9" type="radio" name="rtoggle" value="satellite" />-->
+<!--<label for="satellite-v9">satellite</label>-->
+<!--</div>-->
 <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
 <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 
@@ -36,8 +47,8 @@ center: [<?php echo $long;?>, <?php echo $lat;?>]
 });
  
 var marker = new mapboxgl.Marker({
-	color: "red",
-	draggable: true
+color: "red",
+draggable: true
 }).setLngLat([<?php echo $long;?>, <?php echo $lat;?>])
 .addTo(map);  
  
@@ -45,8 +56,8 @@ var layerList = document.getElementById('menu');
 // var inputs = layerList.getElementsByTagName('input');
  
 function switchLayer(layer) {
-	var layerId = layer.target.id;
-	map.setStyle('mapbox://styles/mapbox/' + layerId);
+var layerId = layer.target.id;
+map.setStyle('mapbox://styles/mapbox/' + layerId);
 }
  
 // for (var i = 0; i < inputs.length; i++) {

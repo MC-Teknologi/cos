@@ -3,6 +3,11 @@ UPDATE NOTE
 *******************
 
 *******************
+Version 1.1.3 (Beta) 04 Feb 2021
+*******************
+* Fix bug and upgrading performance
+
+*******************
 Version 1.1.2 (Beta) 02 Feb 2021
 *******************
 * Tracking sales sudah selesai
