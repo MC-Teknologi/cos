@@ -3,6 +3,11 @@ UPDATE NOTE
 *******************
 
 *******************
+Version 1.1.4 (Beta) 08 Feb 2021
+*******************
+* Fix bug null data when download pdf laporan pengembalian dan pesan ulang
+
+*******************
 Version 1.1.3 (Beta) 04 Feb 2021
 *******************
 * Fix bug and upgrading performance

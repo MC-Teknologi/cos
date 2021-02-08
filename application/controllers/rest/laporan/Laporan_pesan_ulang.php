@@ -106,7 +106,7 @@ class Laporan_pesan_ulang extends CI_Controller
         $no = 0;
         $ttl = 0;
 
-        foreach ($pesanulang as $pnj2) {
+        foreach ($pesanulang1 as $pnj2) {
             $no++;
             $sub = $pnj2->HARGA_JUAL_BARANG * $pnj2->JUMLAH_PESAN_ULANG;
             $pdf->Cell(10, 6, $no, 1, 0, 'C');

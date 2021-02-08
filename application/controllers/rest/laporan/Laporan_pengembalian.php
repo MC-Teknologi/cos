@@ -105,7 +105,7 @@ class Laporan_pengembalian extends CI_Controller
         $pdf->SetFont('Times', '', 10);
         $no = 0;
         $ttl = 0;
-        foreach ($pengembalian as $pnj2) {
+        foreach ($pengembalian1 as $pnj2) {
             $no++;
 
             $pdf->Cell(10, 6, $no, 1, 0, 'C');
